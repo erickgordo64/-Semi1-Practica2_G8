@@ -45,7 +45,7 @@ export class UserService {
   }
 
   Login(usuario: string, contraseña: string) {
-    const url = environment.apiURl+"/";
+    const url = environment.apiURl;
 
     console.log(usuario, contraseña)
 
