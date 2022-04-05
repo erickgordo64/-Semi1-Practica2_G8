@@ -50,7 +50,7 @@
 <p align = "Justify">El diagrama Entidad relación utilizado para el desarrollo de la base de datos MySql es el siguiente.</p>
 
 <p align="center">
-    <img src="./Imagenes/ER_PROYECTO.png" width= 500 title="Arquitectura">
+    <img src="./Imagenes/" width= 500 title="Arquitectura">
 </p>
 
 ## Usuarios IAM Creados

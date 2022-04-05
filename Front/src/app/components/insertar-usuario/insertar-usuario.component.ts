@@ -60,7 +60,7 @@ export class InsertarUsuarioComponent implements OnInit {
       if (this.uploadedFiles[0] != undefined) {
         for (var i = 0; i < this.uploadedFiles.length; i++) {
           formData.append("file", this.uploadedFiles[i], this.uploadedFiles[i].name);
-          asyncResult = await this.http.post(environment.apiURl+'uploadImage', formData).toPromise()
+          asyncResult = await this.http.post("http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+'uploadImage', formData).toPromise()
           console.log(asyncResult["msg"]);
 
           this.userService.InsertUser(this.nombre, this.usuario, this.password, asyncResult["msg"])

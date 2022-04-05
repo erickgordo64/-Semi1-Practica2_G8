@@ -16,7 +16,7 @@ export class UserService {
 
   InsertUser(nombre: string, usuario:string, contraseña: string, imagen: string) {
 
-    const url = environment.apiURl+"Usuario"
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"Usuario"
     return this.http.post(
       url,
       {
@@ -30,7 +30,7 @@ export class UserService {
 
   }
   uploadWebImage(foto:string){
-    const url = environment.apiURl+"uploadWebCamImage"
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"uploadWebCamImage"
     return this.http.post(
       url,
       {
@@ -43,7 +43,7 @@ export class UserService {
   }
 
   Login(usuario: string, contraseña: string) {
-    const url = environment.apiURl;
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/";
 
     console.log(usuario, contraseña)
 
@@ -57,7 +57,7 @@ export class UserService {
   }
 
   loginReconocimiento(usuario: string, imagen: string) {
-    const url = environment.apiURl+"reconocimiento";
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"reconocimiento";
 
     return this.http.post<any>(url,
       {
@@ -69,7 +69,7 @@ export class UserService {
   }
 
   updateUser(usuario:string,pw:string, nobmre:string,foto:string){
-    const url = environment.apiURl+"updateUser";
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"updateUser";
 
     return this.http.post<any>(url,
       {
@@ -82,7 +82,7 @@ export class UserService {
       .pipe(map(data => data));
   } 
   crearPublicacion(imagen: string, descripcion:string, idusuario: any, nombre:any){
-    const url = environment.apiURl+"Imagen";
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"Imagen";
     console.log(idusuario)
     return this.http.post<any>(url,
       {
@@ -96,7 +96,7 @@ export class UserService {
   }
 
   getPublicaciones(idusuario: any){
-    const url = environment.apiURl+`Imagen/?idusuario=${idusuario}`;
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+`Imagen/?idusuario=${idusuario}`;
 
     return this.http.get<any>(url,
     { headers: this.headers })
@@ -104,7 +104,7 @@ export class UserService {
   }
 
   getLabels(){
-    const url = environment.apiURl+"getLabels";
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"getLabels";
 
     return this.http.get<any>(url,
       
@@ -113,7 +113,7 @@ export class UserService {
   }
 
   getPubLabels(id_etiqueta:number){
-    const url = environment.apiURl+"getPubLabels";
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"getPubLabels";
 
     return this.http.post<any>(url,
       {
@@ -123,13 +123,12 @@ export class UserService {
       .pipe(map(data => data));
   }
 
-  getTranslate(){
-    const url = environment.apiURl+"translate";
+  getTranslate(idusuario: any){
+    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+`ImagenTraducir/?idusuario=${idusuario}`;
 
     return this.http.get<any>(url,
-      
-      { headers: this.headers })
-      .pipe(map(data => data));
+    { headers: this.headers })
+    .pipe(map(data => data));
   }
   
   setCurrentUser(user: UserInterface) {

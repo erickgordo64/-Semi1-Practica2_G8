@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
   }
 
   translate(){
-    this.userService.getTranslate().subscribe((res: PublicacionInterface[]) => {
+    this.userService.getTranslate(this.idusuario).subscribe((res: PublicacionInterface[]) => {
       this.publicaciones = res;
 
     })

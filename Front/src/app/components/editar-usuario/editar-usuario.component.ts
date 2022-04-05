@@ -45,11 +45,11 @@ export class EditarUsuarioComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
-    this.foto = this.userService.getCurrentUser()['foto_usuario'];
+    this.foto = this.userService.getCurrentUser()['ubicacion'];
     this.usuario = this.userService.getCurrentUser()['usuario'];
-    this.imgURL = 'https://grupo7-bucket.s3.us-east-2.amazonaws.com/' + this.userService.getCurrentUser()['foto_usuario'];
+    this.imgURL = this.userService.getCurrentUser()['ubicacion'];
     console.log(this.imgURL);
-    this.nombre = this.userService.getCurrentUser()['nombre_usuario'];
+    this.nombre = this.userService.getCurrentUser()['usuario'];
   }
   addImage(element: any) {
 
@@ -77,7 +77,7 @@ export class EditarUsuarioComponent implements OnInit {
     if (this.password === '') {
       alert('Debes ingresar la contrasena!');
     } else {
-      if (this.imgURL === 'https://grupo7-bucket.s3.us-east-2.amazonaws.com/' + this.userService.getCurrentUser()['foto_usuario']) {
+      if (this.imgURL === this.userService.getCurrentUser()['ubicacion']) {
         this.userService.updateUser(this.usuario, this.password, this.nombre, this.foto)
           .subscribe((res: any) => {
             if (!res['error']) {
@@ -97,7 +97,7 @@ export class EditarUsuarioComponent implements OnInit {
         if (this.uploadedFiles[0] != undefined) {
           for (var i = 0; i < this.uploadedFiles.length; i++) {
             formData.append("file", this.uploadedFiles[i], this.uploadedFiles[i].name);
-            asyncResult = await this.http.post(environment.apiURl + 'uploadImage', formData).toPromise()
+            asyncResult = await this.http.post("http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/" + 'uploadImage', formData).toPromise()
             console.log(asyncResult["msg"]);
 
             this.userService.updateUser(this.usuario,this.password, this.nombre, asyncResult["msg"])
