@@ -49,7 +49,7 @@ export class InsertarUsuarioComponent implements OnInit {
       });
   }
   async addUser() {
-    if (this.nombre === "" || this.usuario === "" || this.password === "" || this.confirmarPassword === "" || this.email === "") {
+    if (this.nombre === "" || this.usuario === "" || this.password === "" || this.confirmarPassword === "") {
       alert("Debe llenar todos los campos");
     } else if (this.password != this.confirmarPassword) {
       alert("La contrasena no coincide con la confirmacion");
@@ -63,7 +63,7 @@ export class InsertarUsuarioComponent implements OnInit {
           asyncResult = await this.http.post(environment.apiURl+'uploadImage', formData).toPromise()
           console.log(asyncResult["msg"]);
 
-          this.userService.InsertUser(this.nombre, this.usuario, this.email, this.password, asyncResult["msg"])
+          this.userService.InsertUser(this.nombre, this.usuario, this.password, asyncResult["msg"])
             .subscribe((res: any) => {
               console.log(res);
               if (res['error']) {
@@ -74,7 +74,6 @@ export class InsertarUsuarioComponent implements OnInit {
                 this.usuario = "";
                 this.password = "";
                 this.confirmarPassword = "";
-                this.email = "";
                 this.imgURL = "https://t4.ftcdn.net/jpg/01/19/32/93/240_F_119329387_sUTbUdeyhk0nuhNw5WaFvOyQFmxeppjX.jpg";
               }
 
@@ -82,12 +81,10 @@ export class InsertarUsuarioComponent implements OnInit {
         }
       } else {
 
-        this.userService.uploadWebImage(this.webcamImage.imageAsBase64)
-          .subscribe((res: any) => {
-            asyncResult = res;
-            console.log(asyncResult["msg"]);
+        console.log(this.webcamImage.imageAsBase64)
+       
 
-            this.userService.InsertUser(this.nombre, this.usuario, this.email, this.password, asyncResult["msg"])
+            this.userService.InsertUser(this.nombre, this.usuario, this.password, this.webcamImage.imageAsBase64)
               .subscribe((res: any) => {
                 console.log(res);
                 if (res['error']) {
@@ -98,12 +95,11 @@ export class InsertarUsuarioComponent implements OnInit {
                   this.usuario = "";
                   this.password = "";
                   this.confirmarPassword = "";
-                  this.email = "";
                   this.imgURL = "https://t4.ftcdn.net/jpg/01/19/32/93/240_F_119329387_sUTbUdeyhk0nuhNw5WaFvOyQFmxeppjX.jpg";
                 }
 
               })
-          })
+          
       }
 
 

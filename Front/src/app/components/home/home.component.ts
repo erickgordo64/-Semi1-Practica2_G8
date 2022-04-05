@@ -13,14 +13,22 @@ export class HomeComponent implements OnInit {
   labels: any;
   etiquetaSeleccionada: any
   idEtiqueta:any;
+  idusuario: any;
+  foto: string = "";
   constructor(public userService: UserService, public router: Router) { }
 
   ngOnInit(): void {
-    this.userService.getPublicaciones().subscribe((res: PublicacionInterface[]) => {
+
+    this.idusuario=this.userService.getCurrentUser()['id'];
+    console.log(this.idusuario);
+    this.userService.getPublicaciones(this.idusuario).subscribe((res: PublicacionInterface[]) => {
       this.publicaciones = res;
+    }
 
-    })
+    )
 
+
+    this.foto = this.userService.getCurrentUser()['ubicacion'];
     this.userService.getLabels().subscribe((res: LabelsInterface[]) => {
       this.labels = res;
       this.labels.unshift({
@@ -38,7 +46,7 @@ export class HomeComponent implements OnInit {
   filtrar(){
     //Si es todos
     if(this.idEtiqueta==50000){
-      this.userService.getPublicaciones().subscribe((res: PublicacionInterface[]) => {
+      this.userService.getPublicaciones(this.idusuario).subscribe((res: PublicacionInterface[]) => {
         this.publicaciones = res;
   
       })

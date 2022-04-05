@@ -14,18 +14,16 @@ export class UserService {
     "Content-Type": "application/json"
   })
 
-  InsertUser(nombre: string, usuario:string,correo: string, pw: string, foto: string) {
+  InsertUser(nombre: string, usuario:string, contraseña: string, imagen: string) {
 
-    const url = environment.apiURl+"addUser"
+    const url = environment.apiURl+"Usuario"
     return this.http.post(
       url,
       {
-        "nombre_usuario": nombre,
-        "usuario_usuario": usuario,
-        "pw_usuario": pw,
-        "correo_usuario": correo,
-        "foto_usuario": foto,
-        "estado_usuario":"I"
+        nombre,
+        usuario,
+        contraseña,
+        imagen
       },
       { headers: this.headers }
     ).pipe(map(data => data));
@@ -59,12 +57,12 @@ export class UserService {
   }
 
   loginReconocimiento(usuario: string, imagen: string) {
-    const url = environment.apiURl+"/login/reconocimiento";
+    const url = environment.apiURl+"reconocimiento";
 
     return this.http.post<any>(url,
       {
-        "usuario_usuario": usuario,
-        "imagen": imagen
+        usuario,
+        imagen
       }
       , { headers: this.headers })
       .pipe(map(data => data));
@@ -83,26 +81,26 @@ export class UserService {
       , { headers: this.headers })
       .pipe(map(data => data));
   } 
-  crearPublicacion(imagen_publicacion:string, contenido_publicaicon:string, id_usuario_publicacion:string, labels_publicacion:any){
-    const url = environment.apiURl+"crearPublicacion";
-
+  crearPublicacion(imagen: string, descripcion:string, idusuario: any, nombre:any){
+    const url = environment.apiURl+"Imagen";
+    console.log(idusuario)
     return this.http.post<any>(url,
       {
-        "imagen_publicacion": imagen_publicacion,
-        "contenido_publicaicon": contenido_publicaicon,
-        "id_usuario_publicacion":id_usuario_publicacion,
-        "labels_publicacion":labels_publicacion
+        imagen,
+        descripcion,
+        idusuario,
+        nombre
       }
       , { headers: this.headers })
       .pipe(map(data => data));
   }
 
-  getPublicaciones(){
-    const url = environment.apiURl+"getPublicaciones";
+  getPublicaciones(idusuario: any){
+    const url = environment.apiURl+`Imagen/?idusuario=${idusuario}`;
 
     return this.http.get<any>(url,
-      { headers: this.headers })
-      .pipe(map(data => data));
+    { headers: this.headers })
+    .pipe(map(data => data));
   }
 
   getLabels(){

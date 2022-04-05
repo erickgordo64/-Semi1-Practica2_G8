@@ -2,7 +2,9 @@
 <div class="container" style="padding-top: 50px; padding-left: 50px; padding-right: 50px;">
   <div class="row">
 
-
+    <div>
+      <img [src]="foto">
+    </div>
     <div class="col-6 col-md-6">
       <select class="col" style="width:200px;" [(ngModel)]="etiquetaSeleccionada" name="etiquetas" (change)="setEtiqueta($event)">
         <option *ngFor="let label of labels" [ngValue]="label">{{label.nombre_etiqueta}}</option>
@@ -21,14 +23,14 @@
       <div *ngFor="let publicacion of publicaciones">
         <div class="col">
           <div class="card h-100">
-            <img [src]="'https://grupo7-bucket.s3.us-east-2.amazonaws.com/'+publicacion.imagen_publicacion" width="100"
+            <img [src]="publicacion.Ubicacion" width="100"
               height="200" class="card-img-top" alt="...">
             <div class="card-body">
-              <h5 class="card-title">{{publicacion.usuario_publicacion}}</h5>
-              <p class="card-text">{{publicacion.contenido_publicacion}}</p>
+              <h5 class="card-title">{{publicacion.Descripcion}}</h5>
+              <p class="card-text">{{publicacion.NombreFoto}}</p>
             </div>
             <div class="card-footer">
-              <small class="text-muted">{{publicacion.fecha_publicacion}}</small>
+              <small class="text-muted">{{publicacion.Etiquetas}}</small>
             </div>
           </div>
         </div>

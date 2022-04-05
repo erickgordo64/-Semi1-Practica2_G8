@@ -43,6 +43,7 @@ export class LoginReconocimientoComponent implements OnInit {
         this.auth.loginReconocimiento(this.email,this.webcamImage.imageAsBase64).subscribe((res) => {
           if (!res['error']) {
             let DataUser: UserInterface = res['DataUser'];
+            console.log(DataUser.nombre);
             this.auth.setCurrentUser(DataUser);
             this.router.navigate(['/']);
     

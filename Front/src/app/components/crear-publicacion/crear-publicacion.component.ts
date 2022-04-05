@@ -14,11 +14,13 @@ export class CrearPublicacionComponent implements OnInit {
   public message: string = "";
   public imagePath: any;
   nombre: string = "";
+  division: any;
   uploadedFiles: Array<File> = [];
   constructor(public userService: UserService, private http: HttpClient, public router: Router) { }
 
   ngOnInit(): void {
-    this.idUsuario = this.userService.getCurrentUser()['id_usuario'];
+    this.idUsuario = this.userService.getCurrentUser()['id'];
+    console.log(this.idUsuario)
   }
   async crearPublicacion() {
     if (this.imgURL === "https://t4.ftcdn.net/jpg/01/19/32/93/240_F_119329387_sUTbUdeyhk0nuhNw5WaFvOyQFmxeppjX.jpg") {
@@ -28,11 +30,9 @@ export class CrearPublicacionComponent implements OnInit {
       var asyncResult: any
       for (var i = 0; i < this.uploadedFiles.length; i++) {
         formData.append("file", this.uploadedFiles[i], this.uploadedFiles[i].name);
-        asyncResult = await this.http.post(environment.apiURl + 'uploadImagePubli', formData).toPromise()
-        console.log(asyncResult);
-        if(!asyncResult['error']){
-          var nombreImagen = asyncResult['msg'];
-          this.userService.crearPublicacion(nombreImagen,this.nombre,this.idUsuario,asyncResult['labels'])
+        console.log("aquie va el nombre "+this.nombre+" id"+ this.idUsuario);
+       
+          this.userService.crearPublicacion(this.division[1], this.uploadedFiles[i].name,this.idUsuario, this.nombre)
           .subscribe((res: any) => {
             console.log(res);
             if (!res['error']) {
@@ -44,9 +44,7 @@ export class CrearPublicacionComponent implements OnInit {
             }
 
           })
-        }else{
-          alert(asyncResult['msg']);
-        }
+      
       }
     }
   }
@@ -58,6 +56,7 @@ export class CrearPublicacionComponent implements OnInit {
       return;
 
     var mimeType = element.target.files[0].type;
+    console.log(mimeType)
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Only images are supported.";
       alert(this.message);
@@ -66,9 +65,14 @@ export class CrearPublicacionComponent implements OnInit {
 
     var reader = new FileReader();
     this.imagePath = element.target.files;
+    console.log(this.imagePath)
     reader.readAsDataURL(element.target.files[0]);
+    console.log(reader)
     reader.onload = (_event) => {
-      this.imgURL = reader.result;
+      this.imgURL = reader.result
+      var cadena = this.imgURL;
+      this.division= cadena.split(",");
+      console.log(this.division[1])
     }
 
   }

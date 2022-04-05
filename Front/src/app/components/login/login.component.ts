@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       this.auth.Login(this.email,this.password).subscribe((res) => {
         if (!res['error']) {
           let DataUser: UserInterface = res['DataUser'];
+          console.log(DataUser.ubicacion);
           this.auth.setCurrentUser(DataUser);
           this.router.navigate(['/']);
   
