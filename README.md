@@ -4,9 +4,14 @@
 ## <p align="center">Escuela de Ciencias</p>
 ## <p align="center">Seminario de sistemas 1</p>
 ## <p align="center">Sección B</p>
-### <p align = "center"> Manual</p>
 #### <p align ="center">Practica 2</p>
-### <p align = "center">Grupo 9 </p>
+### <p align = "center">Grupo 8 </p>
+## Integrantes:
+| Nombre | Carné |
+| ------ | ------ |
+|Erick Antonio Valenzuela Rivas	| 201404319|
+|Sohany Ayleen Lopez Salazar |	201700471|
+|Carlos Arnoldo López Coroy	| 201313894|
 ---
 ## Objetivos
 * Generales
