@@ -14,23 +14,24 @@ export class UserService {
     "Content-Type": "application/json"
   })
 
-  InsertUser(nombre: string, usuario:string, contraseña: string, imagen: string) {
+  InsertUser(nombre: string, usuario: string, contraseña: string, correo: string,imagen: string) {
 
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"Usuario"
+    const url = "http://localhost:3000" + "/Usuario"
     return this.http.post(
       url,
       {
         nombre,
         usuario,
         contraseña,
+        correo,
         imagen
       },
       { headers: this.headers }
     ).pipe(map(data => data));
 
   }
-  uploadWebImage(foto:string){
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"uploadWebCamImage"
+  uploadWebImage(foto: string) {
+    const url = "http://localhost:3000" + "/uploadWebCamImage"
     return this.http.post(
       url,
       {
@@ -43,7 +44,7 @@ export class UserService {
   }
 
   Login(usuario: string, contraseña: string) {
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/";
+    const url = "http://localhost:3000" + "/";
 
     console.log(usuario, contraseña)
 
@@ -57,7 +58,7 @@ export class UserService {
   }
 
   loginReconocimiento(usuario: string, imagen: string) {
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"reconocimiento";
+    const url = "http://localhost:3000" + "/reconocimiento";
 
     return this.http.post<any>(url,
       {
@@ -68,21 +69,21 @@ export class UserService {
       .pipe(map(data => data));
   }
 
-  updateUser(usuario:string,pw:string, nobmre:string,foto:string){
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"updateUser";
+  updateUser(usuario: string, pw: string, nobmre: string, foto: string) {
+    const url = "http://localhost:3000" + "/updateUser";
 
     return this.http.post<any>(url,
       {
         "usuario_usuario": usuario,
         "pw_usuario": pw,
-        "nombre_usuario":nobmre,
-        "foto_usuario":foto
+        "nombre_usuario": nobmre,
+        "foto_usuario": foto
       }
       , { headers: this.headers })
       .pipe(map(data => data));
-  } 
-  crearPublicacion(imagen: string, descripcion:string, idusuario: any, nombre:any){
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"Imagen";
+  }
+  crearPublicacion(imagen: string, descripcion: string, idusuario: any, nombre: any) {
+    const url = "http://localhost:3000" + "/Imagen";
     console.log(idusuario)
     return this.http.post<any>(url,
       {
@@ -95,25 +96,48 @@ export class UserService {
       .pipe(map(data => data));
   }
 
-  getPublicaciones(idusuario: any){
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+`Imagen/?idusuario=${idusuario}`;
+  getPublicaciones(idusuario: any) {
+    const url = "http://localhost:3000" + `/Imagen/?idusuario=${idusuario}`;
 
     return this.http.get<any>(url,
-    { headers: this.headers })
-    .pipe(map(data => data));
-  }
-
-  getLabels(){
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"getLabels";
-
-    return this.http.get<any>(url,
-      
       { headers: this.headers })
       .pipe(map(data => data));
   }
 
-  getPubLabels(id_etiqueta:number){
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+"getPubLabels";
+  postImagen64_Texto(imagen: string, nombreArchivo: string) {
+    const direccion = "http://localhost:3000/pollyTexto";
+
+    return this.http.post<any>(direccion,
+      {
+        imagen,
+        nombreArchivo
+      }, { headers: this.headers })
+      .pipe(map(data => data));
+  }
+
+  postImagen64_Rostro(imagen: string, nombreArchivo: string) {
+    const direccion = "http://localhost:3000/pollyRostro";
+    console.log("imagen aki");
+    console.log(nombreArchivo);
+    return this.http.post<any>(direccion,
+      {
+        imagen,
+        nombreArchivo
+      }, { headers: this.headers })
+      .pipe(map(data => data));
+  }
+
+  getLabels() {
+    const url = "http://localhost:3000" + "/getLabels";
+
+    return this.http.get<any>(url,
+
+      { headers: this.headers })
+      .pipe(map(data => data));
+  }
+
+  getPubLabels(id_etiqueta: number) {
+    const url = "http://localhost:3000" + "/getPubLabels";
 
     return this.http.post<any>(url,
       {
@@ -123,14 +147,14 @@ export class UserService {
       .pipe(map(data => data));
   }
 
-  getTranslate(idusuario: any){
-    const url = "http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+`ImagenTraducir/?idusuario=${idusuario}`;
+  getTranslate(idusuario: any) {
+    const url = "http://localhost:3000" + `/ImagenTraducir/?idusuario=${idusuario}`;
 
     return this.http.get<any>(url,
-    { headers: this.headers })
-    .pipe(map(data => data));
+      { headers: this.headers })
+      .pipe(map(data => data));
   }
-  
+
   setCurrentUser(user: UserInterface) {
     let user_string = JSON.stringify(user);
     localStorage.setItem('UsuarioLogueado', user_string);
@@ -150,6 +174,7 @@ export class UserService {
     localStorage.removeItem("UsuarioLogueado");
     this.router.navigate(['/login']);
   }
+
 
 }
 

@@ -18,6 +18,7 @@ export class InsertarUsuarioComponent implements OnInit {
   constructor(public userService: UserService, private http: HttpClient, public router: Router) { }
   nombre: string = "";
   usuario: string = "";
+  correo: string="";
   password: string = "";
   confirmarPassword: string = "";
   email: string = "";
@@ -49,7 +50,7 @@ export class InsertarUsuarioComponent implements OnInit {
       });
   }
   async addUser() {
-    if (this.nombre === "" || this.usuario === "" || this.password === "" || this.confirmarPassword === "") {
+    if (this.nombre === "" || this.usuario === "" || this.password === "" || this.confirmarPassword === "" || this.correo === "") {
       alert("Debe llenar todos los campos");
     } else if (this.password != this.confirmarPassword) {
       alert("La contrasena no coincide con la confirmacion");
@@ -63,7 +64,7 @@ export class InsertarUsuarioComponent implements OnInit {
           asyncResult = await this.http.post("http://balanceador1-semi1-1001816723.us-east-1.elb.amazonaws.com:80/"+'uploadImage', formData).toPromise()
           console.log(asyncResult["msg"]);
 
-          this.userService.InsertUser(this.nombre, this.usuario, this.password, asyncResult["msg"])
+          this.userService.InsertUser(this.nombre, this.usuario, this.password, this.correo, asyncResult["msg"])
             .subscribe((res: any) => {
               console.log(res);
               if (res['error']) {
@@ -73,6 +74,7 @@ export class InsertarUsuarioComponent implements OnInit {
                 this.nombre = "";
                 this.usuario = "";
                 this.password = "";
+                this.correo="";
                 this.confirmarPassword = "";
                 this.imgURL = "https://t4.ftcdn.net/jpg/01/19/32/93/240_F_119329387_sUTbUdeyhk0nuhNw5WaFvOyQFmxeppjX.jpg";
               }
@@ -84,7 +86,7 @@ export class InsertarUsuarioComponent implements OnInit {
         console.log(this.webcamImage.imageAsBase64)
        
 
-            this.userService.InsertUser(this.nombre, this.usuario, this.password, this.webcamImage.imageAsBase64)
+            this.userService.InsertUser(this.nombre, this.usuario, this.password, this.correo,this.webcamImage.imageAsBase64)
               .subscribe((res: any) => {
                 console.log(res);
                 if (res['error']) {
@@ -94,6 +96,7 @@ export class InsertarUsuarioComponent implements OnInit {
                   this.nombre = "";
                   this.usuario = "";
                   this.password = "";
+                  this.correo="";
                   this.confirmarPassword = "";
                   this.imgURL = "https://t4.ftcdn.net/jpg/01/19/32/93/240_F_119329387_sUTbUdeyhk0nuhNw5WaFvOyQFmxeppjX.jpg";
                 }

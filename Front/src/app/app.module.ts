@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainNavbarComponent } from './components/main-navbar/main-navbar.component';
 import { CrearPublicacionComponent } from './components/crear-publicacion/crear-publicacion.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
