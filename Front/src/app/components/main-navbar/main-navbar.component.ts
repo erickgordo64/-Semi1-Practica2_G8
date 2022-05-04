@@ -23,6 +23,6 @@ export class MainNavbarComponent implements OnInit {
     this.router.navigate(['/crearPublicacion']);
   }
   verPublicacion(){
-    this.router.navigate(['']);
+    this.router.navigate(['/carrusel']);
   }
 }
