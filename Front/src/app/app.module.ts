@@ -14,6 +14,7 @@ import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuar
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MainNavbarComponent } from './components/main-navbar/main-navbar.component';
 import { CrearPublicacionComponent } from './components/crear-publicacion/crear-publicacion.component';
+import { CarruselComponent } from './components/carrusel/carrusel.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { CrearPublicacionComponent } from './components/crear-publicacion/crear-
     LoginReconocimientoComponent,
     EditarUsuarioComponent,
     MainNavbarComponent,
-    CrearPublicacionComponent
+    CrearPublicacionComponent,
+    CarruselComponent
   ],
   imports: [
     BrowserModule,

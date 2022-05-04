@@ -17,8 +17,6 @@ export class HomeComponent implements OnInit {
   foto: string = "";
   contadorSiguiente: any = -1;
   contadorAnterior: any = 0;
-  nombreTexto: string = "";
-  nombreRostro: string = "";
   reproducirIntro: boolean = true;
   imgURL: any;
   nombreAudio: string = "";
@@ -107,8 +105,6 @@ export class HomeComponent implements OnInit {
       imgBase64 = imgBase64.replace("data:image/png;base64,", "");
       //console.log(this.contador +"   "+imgBase64);
 
-      this.nombreTexto = imgBase64.substring(15, 30).replace('/', "4p");
-      this.nombreRostro = imgBase64.substring(30, 45).replace('/', "pi");
 
       /*this.userService.postImagen64_Texto(imgBase64, this.nombreAudio).subscribe((res) => {
         console.log("en el CARRUSEL Texto  ===" + res);

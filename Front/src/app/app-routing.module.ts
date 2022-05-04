@@ -7,6 +7,7 @@ import { LoginReconocimientoComponent } from './components/login-reconocimiento/
 import { EditarUsuarioComponent } from './components/editar-usuario/editar-usuario.component';
 import { CrearPublicacionComponent } from './components/crear-publicacion/crear-publicacion.component';
 import { AuthGuard } from "./guards/auth.guard";
+import { CarruselComponent } from './components/carrusel/carrusel.component';
 const routes: Routes = [
   {
     path: 'insertarUsuario',
@@ -35,6 +36,10 @@ const routes: Routes = [
     path: 'crearPublicacion',
     component:CrearPublicacionComponent,
     canActivate:[AuthGuard]
+  },
+  {
+    path:'carrusel',
+    component:CarruselComponent
   }
 
 ];
