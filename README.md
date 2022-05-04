@@ -35,8 +35,8 @@
 * <p align = "justify">Translate: es un servicio de traducción automática neuronal que ofrece traducción de idiomas rentable, personalizable, de alta calidad y rápida.</p>
 * <p align = "justify">IAM: Identity and Access Management (IAM) puede administrar el acceso a los servicios y recursos de AWS de manera segura. Además, puede crear y administrar usuarios y grupos de AWS, así como utilizar permisos para conceder o negar el acceso de estos a los recursos de AWS.</p>
 * <p align = "justify">COGNITO: Es un servicio que permite incorporar de manera rápida y sencilla el registro, inicio de sesión o bien un control de acceso a usuarios.</p>
-* * <p align = "justify">RDS: Es una colección de servicios administrativos que facilita la configuración de imagnes de bases de datos tanto la propia de amazon Aurora, como también: MySql, PostgrSQL, MariaDB, Oracle, SQLServer.</p>
-* * <p align = "justify">POLLY: Es un servicio de voz, donde su principal caracteristicas es convertir un texto en habla verosímil, lo cual es ideal para crear app que lean o hablen total o parcialmente.</p>
+* <p align = "justify">RDS: Es una colección de servicios administrativos que facilita la configuración de imagnes de bases de datos tanto la propia de amazon Aurora, como también: MySql, PostgrSQL, MariaDB, Oracle, SQLServer.</p>
+* <p align = "justify">POLLY: Es un servicio de voz, donde su principal caracteristicas es convertir un texto en habla verosímil, lo cual es ideal para crear app que lean o hablen total o parcialmente.</p>
 
 
 
@@ -54,6 +54,8 @@
 <p align ="justify"> Se hizo uso del servicio de Amazon Rekognition, para poder obtener las etiquetas relacionadas con las publicaciones realizadas por los usuarios así como también es necesario el uso para el inicio de sesión por medio de reconocimiento facial.</p>
 
 <p align ="justify">Amazon Translate es utilizado para que la aplicación sea capaz de traducir las publicaciones al idioma español, este servicio esta configurado para detectar de manera automatica el idioma en el que se encuentra la publicación y traducirla al español</p>
+
+<p align ="justify">Amazon Polly se utilizo para realizar la interpretación hablada de las cadenas de string realizadas por amazon rekognition, lo cual fue fundamental para el proposito del proyecto.</p>
 
 <p align = "Justify">El diagrama Entidad relación utilizado para el desarrollo de la base de datos MySql es el siguiente.</p>
 
