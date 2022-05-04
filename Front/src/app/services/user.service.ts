@@ -127,8 +127,8 @@ export class UserService {
       .pipe(map(data => data));
   }
 
-  getFotos(){
-    const direccion = "http://localhost:3000/retornarLinks";
+  getFotos(id:string){
+    const direccion = "http://localhost:3000/retornarLinks/"+id;
     return this.http.get<any>(direccion,
       {headers: this.headers})
       .pipe(map(data=>data));

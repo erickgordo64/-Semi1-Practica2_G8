@@ -1,6 +1,6 @@
 export interface listPhotos{
     link: string;
-    //description: string;
+    id: string;
     //other: string;
 }
 

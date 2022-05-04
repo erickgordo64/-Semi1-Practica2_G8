@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { listPhotos } from 'src/app/models/listNamesImg';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrusel',
@@ -17,12 +18,12 @@ export class CarruselComponent implements OnInit {
   nombreAudio:string="";
   imgURL: any = "https://albumpractica1.s3.amazonaws.com/fotos/foto0.jpg";
   public imagePath: any;
+  idUusarioLogueado:string="";
 
 
 
 
-
-  constructor(private api:UserService) {
+  constructor(private api:UserService, private router:Router, public userService: UserService) {
     this.listaDeLinks=[];
   }
 
@@ -30,17 +31,22 @@ export class CarruselComponent implements OnInit {
 
 
   ngOnInit(): void {
-    //let aceptar = window.confirm("hola");
-
-    //lleno mi lista de los links de las fotos en mi bucket
-    //if (aceptar === true) {
       console.log("mensaje aceptado");
-      this.api.getFotos().subscribe((data: listPhotos[]) => {
+      
+      this.api.getFotos(this.userService.getCurrentUser()['id']).subscribe((data: listPhotos[]) => {
         this.listaDeLinks = data;
-        //this.intro(); //problemas no permite ser reproducido al cargar la pagina 
       })
-      //aceptar = false;
-    //}
+
+
+    //valido la existencia del token si no se ha cerrado sesión 
+    if(localStorage.getItem('UsuarioLogueado')){ 
+      let array =  this.userService.getCurrentUser()['id'];
+      console.log(array);
+    }else{
+      this.router.navigate(['/login']);
+    }
+
+
   }
 
   retornarImagenSiguiente(event: any) {
