@@ -37,7 +37,7 @@ export class CarruselComponent implements OnInit {
       console.log("mensaje aceptado");
       this.api.getFotos().subscribe((data: listPhotos[]) => {
         this.listaDeLinks = data;
-        this.intro(); //problemas no permite ser reproducido al cargar la pagina 
+        //this.intro(); //problemas no permite ser reproducido al cargar la pagina 
       })
       //aceptar = false;
     //}
@@ -49,6 +49,7 @@ export class CarruselComponent implements OnInit {
       this.contadorSiguiente = 0;
     }
     this.imgURL = this.listaDeLinks[this.contadorSiguiente].link;
+    console.log(this.imgURL);
     this.nombreAudio = this.listaDeLinks[this.contadorSiguiente].link;
     this.getBase64Image();
   }
@@ -96,7 +97,7 @@ export class CarruselComponent implements OnInit {
 
   intro() {
     //const audioIntro = new Audio('assets/intro.mp3');
-    const audioIntro = new Audio('resource/intro.mp3');
+    const audioIntro = new Audio('https://albumpractica1.s3.amazonaws.com/audio/intro.mp3');
     audioIntro.play();
   }
 
@@ -104,11 +105,11 @@ export class CarruselComponent implements OnInit {
 
 
   reproducir() {
-
-    const audioTexto = new Audio('assets/texto.mp3');  //links de los audios en el servidor
+    console.log("reproduciendo audios generados");
+    const audioTexto = new Audio('C:/Users/krlos/Documents/GitHub/BackendNode/recursos/Texto.mp3');  //links de los audios en el servidor
     audioTexto.play();
     audioTexto.addEventListener('ended', function () {
-      const audioRostro = new Audio('assets/rostros.mp3'); //links del audio en el servidor
+      const audioRostro = new Audio('C:/Users/krlos/Documents/GitHub/BackendNode/recursos/Rostro.mp3'); //links del audio en el servidor
       audioRostro.play();
     }, true);
 
